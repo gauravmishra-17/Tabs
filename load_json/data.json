@@ -1,0 +1,28 @@
+{
+  "Popular": ["How old is Car?", "Are you willling to bargain?"],
+  "RC": [
+    "How old is Car?",
+    "Are you willling to bargain?",
+    "Comapany or Individual Registration?",
+    "Registration Number?"
+  ],
+  "Car Condition": [
+    "Is car good?",
+    "Is battery okay?",
+    "Comapany or Individual Registration?"
+  ],
+  "Insurance": [
+    "is it insured?",
+    "Comapany or Individual Registration?",
+    "How old is Car?"
+  ],
+  "Fuel Type": [
+    "Is it petrol?",
+    "Is it CNG?",
+    "Is car good?",
+    "Is battery okay?",
+    "Comapany or Individual Registration?"
+  ],
+  "User": ["are you dealer or owner", "is it insured?"],
+  "KM": ["number of kilometers"]
+}

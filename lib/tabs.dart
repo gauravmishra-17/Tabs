@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nested_tab_ui/service.dart';
 import 'package:nested_tab_ui/tab.dart';
 
 import 'chat.dart';
@@ -11,8 +12,10 @@ class Tabs extends StatefulWidget {
 
 class _TabsState extends State<Tabs> {
   List<String> myTabs = <String>['Chat', 'Make Offer'];
+  // DataService _dataService = DataService();
   @override
   Widget build(BuildContext context) {
+    // _dataService.getRequest();
     return DefaultTabController(
       length: 2,
       child: Scaffold(

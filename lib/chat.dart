@@ -1,46 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:nested_tab_ui/tab.dart';
+import 'package:nested_tab_ui/question.dart';
 
-class Chat extends StatelessWidget {
+import 'all_questions.dart';
+import 'service.dart';
+
+class Chat extends StatefulWidget {
+  @override
+  _ChatState createState() => _ChatState();
+}
+
+class _ChatState extends State<Chat> {
+  DataService _dataService = DataService();
+  List<String> myQuestions;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future<List<String>> fetch() async {
+      print("future starts");
+      return await _dataService.getRequest();
+    }
+
+    print("fetch starts");
+    Future.value(fetch()).then((value) {
+      setState(() {
+        myQuestions = value;
+      });
+    });
+    print(myQuestions);
+    print("fetch ends");
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<String> myChats = <String>[
-      'Greet',
-      'Ask landmark',
-      'Ask name',
-      'Ask xyz',
-      'Ask number',
-      'Ask location'
-    ];
-
-    return DefaultTabController(
-      length: myChats.length,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          bottom: TabBar(
-            isScrollable: true,
-            // indicatorPadding: EdgeInsets.all(20),
-            indicatorWeight: 10,
-            indicatorColor: Colors.white,
-            tabs: <Widget>[
-              for (String item in myChats)
-                TabBuilder(
-                  item,
-                  textColor: Colors.white,
-                )
-            ],
-          ),
-        ),
-        body: TabBarView(children: <Widget>[
-          Container(),
-          Container(),
-          Container(),
-          Container(),
-          Container(),
-          Container(),
-        ]),
+    return Column(children: <Widget>[
+      Container(
+        height: 50,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            itemCount: myQuestions.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: QuestionBuilder(
+                  myQuestions[index],
+                  textColor: Colors.black,
+                ),
+              );
+            }),
       ),
-    );
+      Expanded(
+        child: AllQuestions(
+          myQuestions: myQuestions,
+        ),
+      ),
+    ]);
   }
 }
